@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+{% load staticfiles %}
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>{% block title%}{% endblock %}</title>
+<meta name="keywords" content="个人博客" />
+<meta name="description" content="" />
+<script type="text/javascript" src={% static 'js/jquery-2.1.4.js' %}></script>
+{#bootstrap CDN#}
+{# <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>#}
+    <!-- Bootstrap -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+{#bootstrap CDN#}
+<link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/animate.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/lrtk.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/photo.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/carousel.css' %}"/>
+
+<script type="text/javascript" src="{% static 'js/jquery.SuperSlide.2.1.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/common.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/waterfall.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.transform-0.9.1.min.js' %}"></script>
+<!--[if lt IE 9]>
+<script src="{% static 'js/html5.js' %}"></script>
+<![endif]-->
+</head>
+
+<body>
+
+    <!--header start-->
+    <div id="header">
+      <h1>连小锐个人博客</h1>
+        <p style="color:#253944">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一切都是最好的安排！专注考研，爱编程爱生活爱篮球</p>
+    </div>
+     <!--header end-->
+        {% block lunbo %}{% endblock %}
+    <!--nav-->
+     <div id="nav">
+        <ul>
+         <li><a href="/index/">首页</a></li>
+            <li><a href="/learn/">学习笔记</a></li>
+
+         <li><a href="/say/">闲言碎语</a></li>
+         <li><a href="/daynote/">个人日记</a></li>
+            <li><a href="/about/">关于博主</a></li>
+         <li><a href="/photo/">相册展示</a></li>
+         <li><a href="/guestbook/">留言板</a></li>
+         <div class="clear"></div>
+        </ul>
+      </div>
+
+     <div id="content">
+    {% block content%}{% endblock %}
+
+    <div id="footer"><br>
+     <p>Design by:<a href="#" target="_blank">jeaker</a> 2018-2-23 | 连子锐的个人博客</p>
+    </div>
+    <!--footer end-->
+    <script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>
+    <script  type="text/javascript" src="{% static 'js/nav.js' %}"></script>
+    {% block script%}{% endblock %}
+</body>
+</html>

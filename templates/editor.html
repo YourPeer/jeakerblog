@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel="stylesheet" href="{% static 'simditor-2.3.5/styles/simditor.css' %}"/>
+    <script type="text/javascript" src={% static 'simditor-2.3.5/scripts/jquery.min.js' %}></script>
+    <script type="text/javascript" src={% static 'simditor-2.3.5/scripts/module.js' %}></script>
+    <script type="text/javascript" src={% static 'simditor-2.3.5/scripts/hotkeys.js' %}></script>
+
+    <script type="text/javascript" src={% static 'simditor-2.3.5/scripts/uploader.js' %}></script>
+    <script type="text/javascript" src={% static 'simditor-2.3.5/scripts/simditor.js' %}></script>
+</head>
+<body>
+博客：<hr><br>
+<form  method="post" action="/blogpost/">
+    题目:<input type="text" placeholder="文章题目" name="title">
+    类别:<input type="text" placeholder="类别" name="category">
+
+    作者：<input type="text" placeholder="作者" name="author">
+    描述：<textarea id="describe" name="describe" placeholder="这里输入内容" autofocus></textarea>
+内容：<textarea id="editor" name="content" placeholder="这里输入内容" autofocus></textarea>
+<script>
+    $(document).ready(function(){
+    //初始化文本编辑器
+    var editor = new Simditor({
+        //textarea的id
+        textarea: $('#editor'),
+        //工具条都包含哪些内容
+        toolbar:['title','bold','italic','underline','table','color','ol','ul','image','hr','fontScale'],
+        //若需要上传功能，上传的参数设置。
+        upload : {
+                url : 'ImgUpload.action', //文件上传的接口地址
+                params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
+                fileKey: 'fileDataFileName', //服务器端获取文件数据的参数名
+                connectionCount: 3,
+                leaveConfirm: '正在上传文件'
+         }
+    });
+    var editor = new Simditor({
+        //textarea的id
+        textarea: $('#describe'),
+        //工具条都包含哪些内容
+        toolbar:['title','bold','italic','underline','table','color','ol','ul','image','hr','fontScale'],
+        //若需要上传功能，上传的参数设置。
+        upload : {
+                url : 'ImgUpload.action', //文件上传的接口地址
+                params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
+                fileKey: 'fileDataFileName', //服务器端获取文件数据的参数名
+                connectionCount: 3,
+                leaveConfirm: '正在上传文件'
+         }
+    });
+});
+</script>
+    <input type="submit" value="提交" style="background-color:#e26228;color:white;">
+</form><br>
+<hr><br>
+说说：<hr><br>
+<form method="post" action="/say/">
+    <textarea type="text" name="say_content" style="width: 500px;height:300px;"></textarea>
+    <input type="submit" value="提交" style="background-color:#e26228;color:white;">
+</form><br>
+日记：<hr><br>
+<form method="POST" enctype="multipart/form-data" action="/daynote/">
+{% csrf_token %}
+    <input type="file" name="img" value="上传图片">
+    <textarea type="text" name="riji_content" style="width: 500px;height:300px;"></textarea>
+    <input type="submit" value="提交" style="background-color:#e26228;color:white;">
+</form>
+照片:<hr><br>
+<form method="POST" enctype="multipart/form-data" action="/photo/">
+{% csrf_token %}
+    <input type="file" name="img" value="上传图片">
+    描述:<textarea type="text" name="miaoshu" style="width: 500px;height:300px;"></textarea>
+    <input type="submit" value="提交" style="background-color:#e26228;color:white;">
+</form>
+</body>
+</html>
